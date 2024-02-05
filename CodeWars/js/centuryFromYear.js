@@ -1,53 +1,42 @@
-// Esse método não considerado anos com mais de 4 digitos
-function century(year) {
-
-  // Essa cláusula é para a faixa de anos entre 1 e 100 que corresponde ao século 1
-  if (year >= 1 && year <= 100) {
-    return 1;
-  }
-
-  // Todo ano com resto 0, tem como século seus dois primeiros digitos. Caso o resto não seja 0,
-  // é os dois primeiros digitos +1
-  if (year % 100 === 0) {
-
-    // toString Retorna uma string representando o objeto
-    // substring método de string que retorna parte dessa string, delimitada pelo index.
-    const yearString = year.toString();
-    const firstTwoDigits = yearString.substring(0, 2);
-
-    // parseInt analisa um argumento string e retorna um inteiro na base especificada.
-    return parseInt(firstTwoDigits, 10);
-
-  } else {
-    const yearString = year.toString();
-    const firstTwoDigits = yearString.substring(0, 2);
-    const century = parseInt(firstTwoDigits, 10) + 1;
-
-    return century;
-  }
-}
-
 // Esse método considera anos com mais de 4 digitos
 function century(year) {
+  // Se o ano for entre 1 e 100 (inclusive), retorna o século 1
   if (year >= 1 && year <= 100) {
     return 1;
   }
 
+  // Obtém o número de dígitos no ano
   numberOfDigits = year.toString().length;
 
+  // Se o ano for divisível por 100
   if (year % 100 === 0) {
-
-    // O -2 é porque, um ano com 4 digitos, utiliza os dois primeiros que corresponde ao século, com 5 dígitos é a mesma lógica)
+    // Os dois primeiros dígitos representam o século
+    // (-2) porque um ano com 4 dígitos utiliza os dois primeiros que correspondem ao século
+    // Com 5 dígitos, a lógica é a mesma
     centuryDigits = year.toString().substring(0, numberOfDigits - 2);
   } else {
+    // Para anos não divisíveis por 100, o século é obtido arredondando para cima
     centuryDigits = year.toString().substring(0, numberOfDigits - 2);
     centuryDigits = (parseInt(centuryDigits, 10) + 1).toString();
   }
 
+  // Retorna o século como um número inteiro
   return parseInt(centuryDigits, 10);
 }
 
+// A função Math.ceil(x) retorna o menor número inteiro maior ou igual a "x".
+const century2 = (year) => Math.ceil(year / 100);
 
-// E essa é a resposta mais simples de todas... puta que o pariu
-const century = (year) => Math.ceil(year / 100);
+// Exemplos usando a função century
+console.log(century(2024));  // Deve retornar 21
+console.log(century(1776));  // Deve retornar 18
+console.log(century(1492));  // Deve retornar 15
+console.log(century(1000));  // Deve retornar 10
+console.log(century(1));     // Deve retornar 1
 
+// Exemplos usando a função century2
+console.log(century2(2024));  // Deve retornar 21
+console.log(century2(17765));  // Deve retornar 178
+console.log(century2(149224));  // Deve retornar 1493
+console.log(century2(1000));  // Deve retornar 10
+console.log(century2(135));     // Deve retornar 2

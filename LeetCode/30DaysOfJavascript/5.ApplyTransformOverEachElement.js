@@ -24,7 +24,7 @@ const mapSubstitue = function (arr, fn) {
   // Loop through each element of the input array
   for (let i = 0; i < arr.length; i++) {
     // Apply the provided function 'fn' to each element and store the result in the new array
-    transformedArr[i] = fn(arr[i], i);
+    transformedArr[i] = fn(arr[i]);
   }
 
   // Return the array with transformed values
