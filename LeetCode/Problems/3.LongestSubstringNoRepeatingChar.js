@@ -18,21 +18,18 @@ function lengthOfLongestSubstring(s) {
   // Iterating through the string
   for (let i = 0; i < s.length; i++) {
     // Checking if the current character is already in the set
-    console.log("i:", i);
+
     while (set.has(s[i])) {
-      console.log(`Removing ${s[left]} from the set:`, set);
       // If it is, remove characters from the left until there are no more repetitions
       set.delete(s[left]); // Remove the leftmost character from the set
-      console.log(`Set after removing ${s[left]}:`, set);
+
       left++; // Move the left pointer to the right
-      console.log("left++", left);
     }
     // Adding the current character to the set
     set.add(s[i]);
-    console.log(`Added ${s[i]} to the set:`, set);
+
     // Calculating the size of the current substring and updating the maximum size
     maxSize = Math.max(maxSize, i - left + 1);
-    console.log("Current max size:", maxSize);
   }
   // Returning the maximum size of the substring without repeating characters
   return maxSize;
