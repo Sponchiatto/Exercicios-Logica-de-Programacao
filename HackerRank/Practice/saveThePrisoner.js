@@ -17,18 +17,40 @@
 // number 3.
 
 function saveThePrisoner(n, m, s) {
+  // A cadeira inicial onde começa a distribuição dos doces
   const initialChair = s;
+
+  // Calcula o número restante de doces após a distribuição completa de n doces (o resto da divisão de m por n)
   const remasnescente = m % n;
 
+  // Se a soma da cadeira inicial e o número restante de doces menos um for um múltiplo de n
   if ((remasnescente + initialChair - 1) % n == 0) {
+    // Retorna n, que significa que o último doce será entregue ao último prisioneiro (n)
     return n;
   } else {
-    return ((remasnescente + initialChair - 1) % n);
+    // Caso contrário, retorna o índice do prisioneiro que receberá o último doce
+    return (remasnescente + initialChair - 1) % n;
   }
 }
 
-const n = 7;
-const m = 19;
-const s = 2;
+// Definição dos valores de n, m e s
+const n = 7; // Número de prisioneiros
+const m = 19; // Número de doces
+const s = 2; // Cadeira inicial
 
+// Imprime o resultado da função para os valores fornecidos
 console.log(saveThePrisoner(n, m, s));
+
+
+// Solution 2
+function saveThePrisoner(n, m, s) {
+  // Calcula a posição do prisioneiro que receberá o último doce
+  // Usando a fórmula (m - 1 + s) % n para ajustar a posição
+  // Se o resultado for 0, retorna n; caso contrário, retorna o valor calculado
+  return (m - 1 + s) % n || n;
+}
+
+// Razão do -1
+// Se simplesmente somarmos m a s, estaríamos contando a cadeira s duas vezes 
+// (uma vez no início e uma vez na soma). Então, para ajustar essa contagem, 
+// subtraímos 1 de m.
