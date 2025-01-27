@@ -64,6 +64,6 @@ function calcularLogica(expressao) {
   }
 }
 
-const expressao = "~PvQ";
+const expressao = "P ^ (¬Q)";
 
 calcularLogica(expressao);
